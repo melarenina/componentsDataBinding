@@ -10,7 +10,7 @@ export class CockpitComponent implements OnInit {
   // EventEmitter is an gerenic type, which is represented by the <> sign
   // In between <>, define the type of the event, which in this case is a server object
   @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
-  @Output() blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+  @Output('bpCreated') blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   newServerName = '';
   newServerContent = '';
 
