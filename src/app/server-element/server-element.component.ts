@@ -7,7 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ServerElementComponent implements OnInit {
  // Element may only have this type, that's why we use {}
-  @Input() element: {type: string, name: string, content: string};
+ // @Input() allows to access the property from other components
+ // The content inside () is the property name to use outside this component
+  // tslint:disable-next-line:no-input-rename
+  @Input('srvElement') element: {type: string, name: string, content: string};
 
   constructor() { }
 
