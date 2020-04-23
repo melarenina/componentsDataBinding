@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   serverElements = [{type: 'server', name: 'TestServer', content: 'Just a test!'}];
-  
+
   // Every time we use {}, it means that is a JavaScript data
   onServerAdded(serverData: {serverName: string, serverContent:string}) {
     this.serverElements.push({
@@ -17,11 +17,16 @@ export class AppComponent {
     });
   }
 
-  onBlueprintAdded(blueprintData: {serverName: string, serverContent:string}) {
+  onBlueprintAdded(blueprintData: {serverName: string, serverContent: string}) {
     this.serverElements.push({
       type: 'blueprint',
       name: blueprintData.serverName,
       content: blueprintData.serverContent
     });
-  } 
+  }
+
+  onDestroyFirst(){
+    // removing the first element
+    this.serverElements.splice(0, 1);
+  }
 }
