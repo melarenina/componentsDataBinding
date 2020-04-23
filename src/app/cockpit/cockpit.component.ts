@@ -10,8 +10,9 @@ export class CockpitComponent implements OnInit {
   // EventEmitter is an gerenic type, which is represented by the <> sign
   // In between <>, define the type of the event, which in this case is a server object
   @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+  // tslint:disable-next-line:no-output-rename
   @Output('bpCreated') blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
-  newServerName = '';
+  // newServerName = '';
   newServerContent = '';
 
   constructor() { }
@@ -19,17 +20,17 @@ export class CockpitComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onAddServer() {
+  onAddServer(nameInput: HTMLInputElement) {
     // This will emit a new event of this type
     this.serverCreated.emit({
-      serverName: this.newServerName,
+      serverName: nameInput.value,
       serverContent: this.newServerContent
     });
   }
 
-  onAddBlueprint() {
+  onAddBlueprint(nameInput: HTMLInputElement) {
     this.blueprintCreated.emit({
-      serverName: this.newServerName,
+      serverName: nameInput.value,
       serverContent: this.newServerContent
     });
   }
