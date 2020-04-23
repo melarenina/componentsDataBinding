@@ -7,7 +7,9 @@ import {
   OnDestroy,
   ViewChild,
   ElementRef,
-  AfterViewInit
+  AfterViewInit,
+  ContentChild,
+  AfterContentInit
 } from '@angular/core';
 
 @Component({
@@ -16,7 +18,7 @@ import {
   styleUrls: ['./server-element.component.css'],
   encapsulation: ViewEncapsulation.Emulated // None, Native
 })
-export class ServerElementComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
+export class ServerElementComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit, AfterContentInit {
  // Element may only have this type, that's why we use {}
  // @Input() allows to access the property from other components
  // The content inside () is the property name to use outside this component
@@ -24,6 +26,7 @@ export class ServerElementComponent implements OnInit, OnChanges, OnDestroy, Aft
   @Input('srvElement') element: {type: string, name: string, content: string};
   // Name of the local reference        // Name of variable
   @ViewChild('heading', {static: true}) header: ElementRef;
+  @ContentChild('contentParagraph', {static: true}) paragraph: ElementRef;
 
   constructor() {
     console.log('constructor called!');
@@ -42,6 +45,11 @@ export class ServerElementComponent implements OnInit, OnChanges, OnDestroy, Aft
   ngAfterViewInit(){
     console.log('ngAfterViewInit is called!')
     console.log('Text content: ' + this.header.nativeElement.textContent);
+  }
+
+  ngAfterContentInit(){
+    console.log('ngAfterContentInit is called!');
+    console.log('Text Content: ' + this.paragraph.nativeElement.textContent);
   }
 
   ngOnDestroy() {
